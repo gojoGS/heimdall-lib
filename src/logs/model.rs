@@ -1,6 +1,6 @@
 use std::{fmt, slice::Iter};
 
-#[derive(Debug, PartialEq, Eq, PartialOrd)]
+#[derive(Debug, PartialEq, Eq, PartialOrd, Clone)]
 pub enum LogLevel {
     None,
     Debug,

@@ -1,6 +1,6 @@
 use std::{fmt, slice::Iter};
 
-#[derive(Debug, PartialEq, PartialOrd)]
+#[derive(Debug, PartialEq, Eq, PartialOrd)]
 pub enum LogLevel {
     None,
     Debug,
@@ -20,7 +20,7 @@ impl LogLevel {
     where
         S: Into<&'a str>,
     {
-        match level.into() {
+        match level.into().to_uppercase().as_str() {
             "DEBUG" => LogLevel::Debug,
             "INFO" => LogLevel::Info,
             "WARNING" => LogLevel::Warning,

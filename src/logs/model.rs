@@ -1,3 +1,5 @@
+use std::{fmt, slice::Iter};
+
 #[derive(Debug, PartialEq, PartialOrd)]
 pub enum LogLevel {
     None,
@@ -5,6 +7,12 @@ pub enum LogLevel {
     Info,
     Warning,
     Error,
+}
+
+impl fmt::Display for LogLevel {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{:?}", self)
+    }
 }
 
 impl LogLevel {
@@ -19,6 +27,18 @@ impl LogLevel {
             "ERROR" => LogLevel::Error,
             _ => LogLevel::None,
         }
+    }
+
+    pub fn values() -> Iter<'static, LogLevel> {
+        static VALUES: [LogLevel; 5] = [
+            LogLevel::None,
+            LogLevel::Debug,
+            LogLevel::Info,
+            LogLevel::Warning,
+            LogLevel::Error,
+        ];
+
+        VALUES.iter()
     }
 }
 
